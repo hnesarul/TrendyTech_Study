@@ -1,0 +1,66 @@
+The total git and github flow can be devided into multiple steps:
+	1. Configure global/shared environment for accessing the remote repository
+		a. use following commands for personal laptop
+			git config --global user.name <"userName">
+			git config --global user.email <"userEmail">
+			(If ask for password, provide the ssl key provided from git)
+		b. user following commands for shared laptop
+			git config user.name <"userName">
+			git config user.email <"userEmail">
+			(if ask for password, provide the ssl key provided from git)
+	2. Setup Repository: It has two steps.
+		a. Remote Repository: Followings are the steps to setup remote repository
+			i. Go to github.com
+			ii. then sign in to your account
+			iii. Go to repository then create new repository by your project name.
+			iv. Caution: Don't add any file or folder there
+			v. Copy the URL for the repository
+			
+		a. Local Repository: Followings are the commands and steps to setup
+			i. Determine the directory your project should be then follow the commnads
+				command: git init <project_name>
+			ii. change dir to project
+				command: cd <project_name>
+			iii. find git properly initiated or not 
+				command: ls -a (It will show .git file)
+			iv. add or stage for commit
+				(Caution: Every time before you add, check the git status, so you can verify what file or folder is/are being staged)
+				command: git add .(dot)
+				add specific
+				command git add < fileName.ext > / < directory_name >
+			v. Save all what ever added to staging
+				command: git commit -m "write your message here"
+			vi. Add / link up remote repository to the local repository
+				command: git remote add origin < Remote URL >
+			vii. push the local repository to the remote
+				(Caution: Every time before you push, check the git status, so you can verify what branch you are in and what files or folders are being pushed)
+				command: git push -u origin main / < branchName > (-u remembers the branchName so you don't have to type branch name every time you push. Just type git push and push it to remote)
+				command: git push origin main / < branchName >
+	3. Branching: It has several steps as follows
+		a. Creating new branch
+			command: git branch < newBranchName >
+		b. See existing branch:
+			command: git branch (this will show you all branches. starred with checked in branch)
+		c. Jump to specific branch
+			Command: git checkout < newBranchName > (It will move your focus to new branch)
+		d. to make sure
+			Command: git status
+		Note: main -> newBranch / main -> childBranch -> grandChildBranch multilevel branching possible.
+		e.  Deleting branch
+			Command: git branch -d < branchName >
+			(Caution: Never ever delete any branch until unless instructed to)
+	4. Merging Branch:
+		a. check in to the parent branch then use following branch
+			command: git merge < childBranchName >
+		b. then push to the remote repository
+			Command: git push origin < parentBranchName >
+	5. Optional commands that are required sometimes
+		i. See status
+			Command: git status
+		ii. See difference between files
+			command: git diff fileName1 fileName2
+		iii. See git history
+			command: git log
+		iv. Configure the text editor
+			git config --global core.editor "atom --wait" / < editorName >
+		
