@@ -1,66 +1,103 @@
 The total git and github flow can be devided into multiple steps:
 	1. Configure global/shared environment for accessing the remote repository
 		a. use following commands for personal laptop
-			git config --global user.name <"userName">
-			git config --global user.email <"userEmail">
+			Commands:
+				git config --global user.name <"userName">
+				git config --global user.email <"userEmail">
 			(If ask for password, provide the ssl key provided from git)
-		b. user following commands for shared laptop
-			git config user.name <"userName">
-			git config user.email <"userEmail">
+		b. use following commands for shared laptop
+			Commands:
+				git config user.name <"userName">
+				git config user.email <"userEmail">
 			(if ask for password, provide the ssl key provided from git)
-	2. Setup Repository: It has two steps.
+	2. Setup Repository: The whole setup process has two steps.
 		a. Remote Repository: Followings are the steps to setup remote repository
 			i. Go to github.com
 			ii. then sign in to your account
 			iii. Go to repository then create new repository by your project name.
 			iv. Caution: Don't add any file or folder there
-			v. Copy the URL for the repository
+			v. Copy the URL to create connection with local repository
 			
 		a. Local Repository: Followings are the commands and steps to setup
-			i. Determine the directory your project should be then follow the commnads
-				command: git init <project_name>
+			i. Determine the directory your project should be and then follow the following
+				Command: git init <project_name>
 			ii. change dir to project
-				command: cd <project_name>
+				Command: cd <project_name>
 			iii. find git properly initiated or not 
-				command: ls -a (It will show .git file)
+				Command: ls -a (It will show .git file)
 			iv. add or stage for commit
 				(Caution: Every time before you add, check the git status, so you can verify what file or folder is/are being staged)
-				command: git add .(dot)
-				add specific
-				command git add < fileName.ext > / < directory_name >
+				Command: git add .(dot)
+				add specific file
+				Command: git add < fileName.ext > / < directory/fileName >
 			v. Save all what ever added to staging
-				command: git commit -m "write your message here"
+				Command: git commit -m "write your message here"
+											OR
+									 git commit -m "title" -m "write your message here"
 			vi. Add / link up remote repository to the local repository
 				command: git remote add origin < Remote URL >
 			vii. push the local repository to the remote
 				(Caution: Every time before you push, check the git status, so you can verify what branch you are in and what files or folders are being pushed)
 				command: git push -u origin main / < branchName > (-u remembers the branchName so you don't have to type branch name every time you push. Just type git push and push it to remote)
 				command: git push origin main / < branchName >
+				
+				NB: These whole process can be eliminated by creating a remote repository first and then clone it to local. It automatically setup required procedures.
+				
 	3. Branching: It has several steps as follows
 		a. Creating new branch
-			command: git branch < newBranchName >
+			Command: git branch < newBranchName >
 		b. See existing branch:
-			command: git branch (this will show you all branches. starred with checked in branch)
+			Command: git branch (this will show you all branches. starred with checked in branch)
 		c. Jump to specific branch
-			Command: git checkout < newBranchName > (It will move your focus to new branch)
-		d. to make sure
+			Command: git checkout < branchName > (It will move your focus to new branch)
+										OR
+								  git switch < branchName >
+		d. to make sure status
 			Command: git status
-		Note: main -> newBranch / main -> childBranch -> grandChildBranch multilevel branching possible.
 		e.  Deleting branch
 			Command: git branch -d < branchName >
 			(Caution: Never ever delete any branch until unless instructed to)
+			
+			NB: main -> newBranch / main -> childBranch -> grandChildBranch multilevel branching possible.
+			
 	4. Merging Branch:
-		a. check in to the parent branch then use following branch
-			command: git merge < childBranchName >
-		b. then push to the remote repository
+		a. check in to the parent branch then use following command
+			Command: git merge < childBranchName >
+		b. Then push to the remote repository
 			Command: git push origin < parentBranchName >
-	5. Optional commands that are required sometimes
+	5. Cloning
+		a. Git clone:
+			Command: git clone < remoteRepsitoryURL >
+		b. Find remote origin using
+			Command: git remote -v
+		c. Now create a repository on your own remote and copy the URL
+		d. Then go to the local repository and use the following command to add remote upstream and remote origin
+			Command: git remote rename origin upstream
+			Command: git remote add / set-url* origin < newRepoURL > (Make your own repo)
+			*if exist then use set-url otherwise add
+		e. Then verify git remote -v
+			it should show as follows:
+				origin https://github.com/userName/project_name.git (fetch)
+				origin https://github.com/userName/project_name.git (push)
+				upstream https://cloned/URL/project_name (fetch)
+				upstream https://cloned/URL/project_name (push)				
+	7. Optional commands that are required sometimes
 		i. See status
 			Command: git status
 		ii. See difference between files
 			command: git diff fileName1 fileName2
-		iii. See git history
-			command: git log
-		iv. Configure the text editor
-			git config --global core.editor "atom --wait" / < editorName >
+		iii. Configure the text editor
+			Command: git config --global core.editor "atom --wait" / < editorName >
+		iv. Find log / git history using following commands
+			Command: git log
+			git log -p (includes differences between commits)
+			git log --oneline (prints a short, one line summary)
+			git log --pretty=short (short log)
+			git log --pretty=full
+			git log --pretty=fuller
+			git log -<n> (last n number of commits)
+			git log --since=<time> (specified time to current commits. ex: git log --since=1.month, git log --since="2019-01-15")
+			git log -S < functionName > gives commits that had the specified string
+		v. Following command can commit directly without add / staging 
+			git commit -a -m "type your message"
 		

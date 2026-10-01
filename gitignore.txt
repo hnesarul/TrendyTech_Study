@@ -1,0 +1,37 @@
+# === macOS System Files +++
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+
+
+# === Common Code Editors & IDEs ===
+# VS Code
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains (IntelliJ, WebStorm, PyCharm)
+.idea/
+*.iws
+
+# Xcode / Mac Development
+build/
+DerivedData/
+*.pbxuser
+*.modelv3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+
+# === Temporary & Environment Files ===
+*.log
+.env
+.env.local
+.env.*.local
+.tmp/
+dist/
+node_modules/
